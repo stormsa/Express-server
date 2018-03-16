@@ -1,0 +1,7 @@
+L'application dashboard pi est un app standalone
+Celle-ci fonctione sans serveur
+Le serveur va servir quand à lui à afficher des notifications sur l'application React tel qu'un message
+Pour cela : 
+
+Serveur.js avec express servira à réceptionner les request
+

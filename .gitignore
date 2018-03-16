@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.idea/
+src/client/dashboard_pi

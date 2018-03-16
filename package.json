@@ -1,0 +1,17 @@
+{
+  "name": "dashboard_piserver",
+  "version": "1.0.0",
+  "description": "Serveur pour gérer les intéractions avec le dashboard pi",
+  "main": "src/serveur/serveur.js",
+  "scripts": {
+	"webpackDev": "npm run start --prefix src/client/dashboard_pi",
+	"webpackProd": "npm run build --prefix src/client/dashboard_pi",
+    "start": " npm run webpackDev & node src/serveur/serveur.js",
+	"build": " npm run webpackProd & node src/serveur/serveur.js"
+  },
+  "author": "stormsa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
