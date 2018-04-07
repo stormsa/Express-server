@@ -17,11 +17,8 @@ router.get('/all', function(req, res){
 			}
 		}
 		res.respond(plants, 200)
-	});	
-		
+	});		
 });
-	
-}
 router.get('/', function(req, res){
 	var plantId = req.body.plant_id;
 	Plant.findById(plantId, function(err, plant) {
