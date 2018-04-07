@@ -7,6 +7,21 @@ var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+router.get('/all', function(req, res){
+	console.log("Renvoi la liste des plantes")
+	Plant.find({}, function(err, plants){
+		if(err){
+			response = {
+				message: err,
+				plants: null
+			}
+		}
+		res.respond(plants, 200)
+	}	
+		
+});
+	
+}
 router.get('/', function(req, res){
 	var plantId = req.body.plant_id;
 	Plant.findById(plantId, function(err, plant) {
