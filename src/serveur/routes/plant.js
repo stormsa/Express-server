@@ -17,8 +17,7 @@ router.get('/all', function(req, res){
 			}
 		}
 		res.respond(plants, 200)
-	});	
-		
+	});		
 });
 	
 }
