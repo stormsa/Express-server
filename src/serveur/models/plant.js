@@ -1,13 +1,11 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
-var plantSchema = mongoose.Schema({
+var plantSchema = Schema({
     nom: String, 
-    lastArrosage: Date, 
+    lastArrosage: String, 
     instructions: String, 
     description: String
-})
+});
 
-var Plant = mongoose.model('Plant', plantSchema);
-
+var Plant = mongoose.model('plant', plantSchema);
 module.exports = Plant;

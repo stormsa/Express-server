@@ -2,10 +2,11 @@ var router = require('express').Router();
 var bodyParser = require('body-parser');
 var Plant = require('../models/plant');
 
-// creation des parsers pour lire les réponses url
+// creation des parsers pour lire les rÃ©ponses url
 var jsonParser = bodyParser.json()
 // create application/x-www-form-urlencoded parser 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+router.use(jsonParser)
 
 router.get('/all', function(req, res){
 	console.log("Renvoi la liste des plantes")
@@ -19,8 +20,10 @@ router.get('/all', function(req, res){
 		res.respond(plants, 200)
 	});		
 });
+
 router.get('/', function(req, res){
-	var plantId = req.body.plant_id;
+	var plantId = req.param('plant_id');
+  console.log("Le nom de ma plante est"+plantId)
 	Plant.findById(plantId, function(err, plant) {
 		if (err) {
 			response = {
@@ -35,12 +38,14 @@ router.get('/', function(req, res){
 });
 
 router.post('/', function(req, res){
+  console.log("Post plant");
 	var newPlant = new Plant({
 		nom: req.body.name,
 		lastArrosage: new Date(req.body.lastArrosage),
 		instructions : req.body.instructions,
 		description: req.body.description
 	})
+ console.log("Insertion plante"+newPlant.nom);
 	newPlant.save(function(err) {
 		var message
 		if (err) {
@@ -52,7 +57,7 @@ router.post('/', function(req, res){
 		}
 		else{
 			response = {
-				message: "Votre plante a bien été sauvegardée",
+				message: "Votre plante a bien Ã©tÃ© sauvegardÃ©e",
 				plant: newPlant
 			}
 			res.respond(response, 200)
@@ -74,7 +79,7 @@ router.put('/arrose', urlencodedParser, function(req, res){
 		var currentDate = new Date();
 		plant.lastArrosage = currentDate
 		response = {
-			message: "Votre plante a bien été arrosée",
+			message: "Votre plante a bien Ã©tÃ© arrosÃ©e",
 			plant: plant
 		}
 		// show the one user
